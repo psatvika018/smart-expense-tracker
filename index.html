@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SmartExpense — Polished, intelligent expense tracker with real-time category suggestions, duplicate detection, budget envelopes, and financial analytics.">
+  <meta name="theme-color" content="#0B0F19">
+  <title>SmartExpense — Premium Financial Intelligence & Tracker</title>
+
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Application Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/views.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Mobile Sidebar Overlay Backdrop -->
+  <div class="sidebar-overlay" aria-hidden="true"></div>
+
+  <div id="app-root">
+    <!-- Desktop & Tablet Sidebar -->
+    <aside class="app-sidebar" aria-label="Main Navigation">
+      <div class="sidebar-header">
+        <div class="brand-wrap">
+          <div class="brand-logo" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div>
+            <div class="brand-text">
+              SmartExpense
+              <span class="brand-badge">PRO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#dashboard" class="nav-item active" data-view="dashboard">
+          <span class="nav-item-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+          </span>
+          <span>Dashboard</span>
+        </a>
+
+        <a href="#transactions" class="nav-item" data-view="transactions">
+          <span class="nav-item-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </span>
+          <span>Transactions</span>
+          <span class="nav-item-badge" id="badge-tx-count">0</span>
+        </a>
+
+        <a href="#budgets" class="nav-item" data-view="budgets">
+          <span class="nav-item-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+          </span>
+          <span>Budgets</span>
+        </a>
+
+        <a href="#reports" class="nav-item" data-view="reports">
+          <span class="nav-item-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+          </span>
+          <span>Analytics & Reports</span>
+        </a>
+
+        <a href="#recurring" class="nav-item" data-view="recurring">
+          <span class="nav-item-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </span>
+          <span>Recurring & Bills</span>
+          <span class="nav-item-badge" id="badge-bills-count" style="display:none; background:var(--color-warning); color:#fff;">0</span>
+        </a>
+
+        <a href="#insights" class="nav-item" data-view="insights">
+          <span class="nav-item-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+          </span>
+          <span>Smart Insights</span>
+        </a>
+
+        <a href="#settings" class="nav-item" data-view="settings">
+          <span class="nav-item-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          </span>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="demo-pill" title="Changes persist to local storage">
+          <span class="demo-pill-dot" aria-hidden="true"></span>
+          <span>Demo Mode • Local DB</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Container Shell -->
+    <div class="app-main">
+      <!-- Top Application Header -->
+      <header class="app-header">
+        <div style="display: flex; align-items: center; gap: var(--space-sm);">
+          <button type="button" class="btn-icon mobile-menu-toggle" aria-label="Open Navigation Menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="demo-pill" style="display: none;" id="header-demo-badge">
+            <span class="demo-pill-dot" aria-hidden="true"></span>
+            <span>Local Mode</span>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <!-- Theme Toggle Button -->
+          <button type="button" class="btn-icon" id="header-btn-theme-toggle" aria-label="Toggle Light and Dark Theme" title="Toggle Theme">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </button>
+
+          <!-- Add Transaction Quick Trigger -->
+          <button type="button" class="btn btn-primary btn-sm" id="header-btn-add">
+            <span>+</span> Record
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Dynamic Content Views -->
+      <main id="main-content" class="app-content">
+        <section id="view-dashboard" class="view-container active" aria-label="Dashboard View"></section>
+        <section id="view-transactions" class="view-container" aria-label="Transactions View"></section>
+        <section id="view-budgets" class="view-container" aria-label="Budgets View"></section>
+        <section id="view-reports" class="view-container" aria-label="Reports and Analytics View"></section>
+        <section id="view-recurring" class="view-container" aria-label="Recurring Bills View"></section>
+        <section id="view-insights" class="view-container" aria-label="Smart Insights View"></section>
+        <section id="view-settings" class="view-container" aria-label="Settings View"></section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <div class="mobile-nav-item active" data-view="dashboard">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+      <span>Home</span>
+    </div>
+    <div class="mobile-nav-item" data-view="transactions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      <span>Ledger</span>
+    </div>
+    <div class="mobile-nav-item" data-view="budgets">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/></svg>
+      <span>Budgets</span>
+    </div>
+    <div class="mobile-nav-item" data-view="reports">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+      <span>Reports</span>
+    </div>
+    <div class="mobile-nav-item" data-view="settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      <span>Settings</span>
+    </div>
+  </nav>
+
+  <!-- =========================================================================
+       Accessible Native <dialog> Modals
+       ========================================================================= -->
+
+  <!-- Add / Edit Transaction Modal -->
+  <dialog id="dialog-transaction" class="modal-dialog" aria-labelledby="modal-tx-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-tx-title" class="modal-title">Record Transaction</h2>
+        <button type="button" class="btn-icon close-modal-tx" aria-label="Close dialog">✕</button>
+      </div>
+
+      <form id="form-transaction" data-type="expense">
+        <div class="modal-body">
+          <!-- Segmented Type Selector -->
+          <div class="segmented-control" style="margin-bottom: var(--space-md);">
+            <button type="button" class="segmented-option active-expense" id="modal-type-expense">Expense</button>
+            <button type="button" class="segmented-option" id="modal-type-income">Income</button>
+          </div>
+
+          <!-- Potential Duplicate Real-Time Warning Banner -->
+          <div id="modal-duplicate-banner" class="duplicate-alert-banner" style="display: none;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <div>
+              <strong>Possible Duplicate Detected</strong>
+              <div id="modal-duplicate-text" class="duplicate-alert-text"></div>
+            </div>
+          </div>
+
+          <!-- Amount Input -->
+          <div class="form-group">
+            <label class="form-label form-label-required" for="modal-tx-amount">Amount</label>
+            <div class="input-with-prefix">
+              <span class="input-prefix" aria-hidden="true">$</span>
+              <input type="number" step="0.01" min="0.01" class="input" id="modal-tx-amount" placeholder="0.00" required style="font-size: 1.25rem; font-weight: 700;">
+            </div>
+          </div>
+
+          <!-- Merchant / Payee -->
+          <div class="form-group">
+            <label class="form-label form-label-required" for="modal-tx-merchant">Merchant / Payee</label>
+            <input type="text" class="input" id="modal-tx-merchant" placeholder="e.g. Trader Joe's, Netflix, Landlord" required autocomplete="off">
+            <!-- Smart Auto-Suggestion Chip -->
+            <button type="button" id="modal-suggestion-chip" class="suggestion-chip" style="display: none;">
+              <span>✨</span>
+              <span id="modal-suggestion-text">Suggested Category</span>
+            </button>
+          </div>
+
+          <!-- Category & Account Row -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+            <div class="form-group">
+              <label class="form-label form-label-required" for="modal-tx-category">Category</label>
+              <select class="select" id="modal-tx-category" required></select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label form-label-required" for="modal-tx-account">Account</label>
+              <select class="select" id="modal-tx-account" required></select>
+            </div>
+          </div>
+
+          <!-- Date -->
+          <div class="form-group">
+            <label class="form-label form-label-required" for="modal-tx-date">Date</label>
+            <input type="date" class="input" id="modal-tx-date" required>
+          </div>
+
+          <!-- Optional Notes -->
+          <div class="form-group">
+            <label class="form-label" for="modal-tx-note">Notes (optional)</label>
+            <textarea class="textarea" id="modal-tx-note" placeholder="Add receipt description, tags, or context..."></textarea>
+          </div>
+
+          <!-- Receipt Attachment -->
+          <div class="form-group">
+            <label class="form-label">Receipt Image (optional)</label>
+            <div class="receipt-upload-area" id="modal-receipt-upload-area">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom: 4px; color: var(--text-muted);"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <div style="font-size: 0.8125rem; font-weight: 500;">Click to upload receipt photo</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">PNG, JPG up to 5MB</div>
+              <input type="file" id="modal-receipt-file" accept="image/*" style="display: none;">
+            </div>
+
+            <div id="modal-receipt-preview-wrap" class="receipt-preview-wrap" style="display: none;">
+              <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                <img id="modal-receipt-thumb" class="receipt-thumb" alt="Uploaded receipt preview">
+                <span style="font-size: 0.8125rem; font-weight: 500;">Receipt attached</span>
+              </div>
+              <button type="button" class="btn-ghost btn-sm" id="modal-receipt-remove" style="color: var(--color-expense);">Remove</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost close-modal-tx">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="modal-tx-submit">Save Transaction</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- Category Budget Modal -->
+  <dialog id="dialog-budget" class="modal-dialog" aria-labelledby="modal-budget-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-budget-title" class="modal-title">Set Category Budget</h2>
+        <button type="button" class="btn-icon close-modal-budget" aria-label="Close dialog">✕</button>
+      </div>
+
+      <form id="form-budget">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label form-label-required" for="modal-budget-category">Category</label>
+            <select class="select" id="modal-budget-category" required></select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label form-label-required" for="modal-budget-limit">Monthly Limit</label>
+            <div class="input-with-prefix">
+              <span class="input-prefix" aria-hidden="true">$</span>
+              <input type="number" step="10" min="1" class="input" id="modal-budget-limit" placeholder="e.g. 400" required>
+            </div>
+            <span class="form-hint">Set spending threshold to receive proactive alerts</span>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost close-modal-budget">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Budget</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- Recurring Bill Modal -->
+  <dialog id="dialog-recurring" class="modal-dialog" aria-labelledby="modal-recurring-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-recurring-title" class="modal-title">Add Recurring Item</h2>
+        <button type="button" class="btn-icon close-modal-rec" aria-label="Close dialog">✕</button>
+      </div>
+
+      <form id="form-recurring">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label form-label-required" for="modal-rec-name">Subscription / Bill Name</label>
+            <input type="text" class="input" id="modal-rec-name" placeholder="e.g. Netflix 4K, Gym Membership, Rent" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+            <div class="form-group">
+              <label class="form-label form-label-required" for="modal-rec-amount">Amount</label>
+              <div class="input-with-prefix">
+                <span class="input-prefix" aria-hidden="true">$</span>
+                <input type="number" step="0.01" min="0.01" class="input" id="modal-rec-amount" placeholder="0.00" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label form-label-required" for="modal-rec-type">Type</label>
+              <select class="select" id="modal-rec-type">
+                <option value="expense">Expense / Bill</option>
+                <option value="income">Income / Paycheck</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+            <div class="form-group">
+              <label class="form-label form-label-required" for="modal-rec-category">Category</label>
+              <select class="select" id="modal-rec-category" required></select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label form-label-required" for="modal-rec-account">Account</label>
+              <select class="select" id="modal-rec-account" required></select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+            <div class="form-group">
+              <label class="form-label form-label-required" for="modal-rec-frequency">Frequency</label>
+              <select class="select" id="modal-rec-frequency">
+                <option value="monthly">Monthly</option>
+                <option value="biweekly">Bi-weekly</option>
+                <option value="weekly">Weekly</option>
+                <option value="yearly">Yearly</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label form-label-required" for="modal-rec-date">Next Due Date</label>
+              <input type="date" class="input" id="modal-rec-date" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost close-modal-rec">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Recurring Item</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- Fullscreen Receipt Viewer Modal -->
+  <dialog id="dialog-receipt-viewer" class="modal-dialog" aria-labelledby="receipt-modal-title">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="receipt-modal-title" class="modal-title">Receipt Attachment</h2>
+        <button type="button" class="btn-icon close-modal-receipt" aria-label="Close dialog">✕</button>
+      </div>
+      <div class="modal-body" style="text-align: center; background: #000; padding: var(--space-md);">
+        <img id="receipt-modal-img" alt="Attached receipt view" style="max-width: 100%; max-height: 70vh; object-fit: contain; border-radius: var(--radius-sm);">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary close-modal-receipt">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Main ES Module Script -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

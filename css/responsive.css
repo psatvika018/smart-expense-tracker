@@ -1,0 +1,163 @@
+/* ==========================================================================
+   Responsive Navigation & Layout Breakpoints
+   ========================================================================== */
+
+/* Mobile Navigation Bar */
+.mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  backdrop-filter: var(--backdrop-blur);
+  z-index: 50;
+  padding: 0 var(--space-xs);
+  align-items: center;
+  justify-content: space-around;
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: var(--text-muted);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  flex: 1;
+  padding: 6px 0;
+  cursor: pointer;
+}
+
+.mobile-nav-item.active {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.mobile-nav-item svg {
+  width: 20px;
+  height: 20px;
+}
+
+.mobile-menu-toggle {
+  display: none;
+}
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 35;
+}
+
+/* Tablet & Mobile Breakpoint (<= 1024px) */
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .budget-hero-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+}
+
+/* Mobile Breakpoint (<= 768px) */
+@media (max-width: 768px) {
+  .app-sidebar {
+    position: fixed;
+    left: -280px;
+    top: 0;
+    bottom: 0;
+    z-index: 60;
+    box-shadow: var(--shadow-xl);
+    transition: left var(--transition-normal);
+  }
+
+  .app-sidebar.open {
+    left: 0;
+  }
+
+  .sidebar-overlay.active {
+    display: block;
+  }
+
+  .mobile-menu-toggle {
+    display: inline-flex;
+  }
+
+  .mobile-bottom-nav {
+    display: flex;
+  }
+
+  .app-header {
+    padding: 0 var(--space-md);
+    height: 60px;
+  }
+
+  .app-content {
+    padding: var(--space-md);
+    padding-bottom: 84px; /* Space for mobile nav */
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .filter-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-select {
+    width: 100%;
+  }
+
+  .segmented-control {
+    width: 100%;
+  }
+
+  .bill-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+
+  .bill-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  dialog.modal-dialog {
+    width: 95vw;
+    max-height: 95vh;
+  }
+
+  .toast-container {
+    left: var(--space-md);
+    right: var(--space-md);
+    bottom: 74px;
+  }
+
+  .toast {
+    min-width: unset;
+    width: 100%;
+  }
+}
